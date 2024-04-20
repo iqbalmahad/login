@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
@@ -32,8 +31,11 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
     Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
     Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 
+
+    Route::get('users/import', [UserController::class, 'showImportForm'])->name('users.import.form');
+    Route::post('users/import', [UserController::class, 'import'])->name('users.import');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');

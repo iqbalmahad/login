@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Imports\UserImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -75,13 +77,9 @@ class UserController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'sometimes|string|min:8',
+            'nik' => 'required|min:7',
         ]);
 
-        if ($request->has('password')) {
-            $validatedData['password'] = bcrypt($validatedData['password']);
-        }
 
         $user->update($validatedData);
 
@@ -101,5 +99,26 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+    // Method untuk menampilkan form import
+    public function showImportForm()
+    {
+        return view('users.import'); // Ganti 'users.import' dengan nama view yang kamu inginkan
+    }
+
+    // Method untuk memproses import data pengguna
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls', // Validasi file hanya boleh format Excel (xlsx, xls)
+        ]);
+
+        $file = $request->file('file');
+
+        // Proses import menggunakan package Laravel Excel
+        Excel::import(new UserImport, $file);
+
+        return redirect()->route('users.index')->with('success', 'Users imported successfully.');
     }
 }

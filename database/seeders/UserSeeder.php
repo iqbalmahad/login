@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash; // Import class Hash untuk melakukan hashing password
 use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
@@ -17,8 +18,8 @@ class UserSeeder extends Seeder
         // Buat user admin
         $admin = User::create([
             'name' => 'Admin User',
-            'nik' => 1234567890, // Isi sesuai kebutuhan
-            'password' => 'password', // Ganti 'password' dengan password yang diinginkan
+            'nik' => '1234567890', // NIK disimpan sebagai string
+            'password' => 'password', // Gunakan Hash::make() untuk mengenkripsi password
         ]);
         $adminRole = Role::where('name', 'admin')->first();
         $admin->assignRole($adminRole);
@@ -28,8 +29,8 @@ class UserSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             $user = User::create([
                 'name' => 'User ' . $i,
-                'nik' => 1000000000 + $i, // Contoh penambahan nilai untuk nik
-                'password' => 'password', // Ganti 'password' dengan password yang diinginkan
+                'nik' => '100000000' . $i, // NIK disimpan sebagai string
+                'password' => 'password', // Gunakan Hash::make() untuk mengenkripsi password
             ]);
 
             $userRole = Role::where('name', 'user')->first();

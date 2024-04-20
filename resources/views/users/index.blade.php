@@ -3,6 +3,7 @@
 @section('content')
     <h1>User List</h1>
     <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Add User</a>
+    <a href="{{ route('users.import.form') }}" class="btn btn-success mb-3">Import Users</a> {{-- Tambahkan link import --}}
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -13,7 +14,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>NIK</th>
                 <th>Name</th>
                 <th>Lokasi</th>
                 <th>Actions</th>
@@ -22,7 +23,7 @@
         <tbody>
             @foreach ($users as $user)
                 <tr>
-                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->nik }}</td>
                     <td>{{ $user->name }}</td>
                     @if ($user->address != null)
                     <td>{{ $user->address->lokasi }}, {{ $user->address->branch }}</td>
