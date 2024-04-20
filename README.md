@@ -1,60 +1,94 @@
-Ini adalah langkah-langkah untuk menginstal dan menjalankan aplikasi Logingi:
+Berikut adalah langkah-langkah lebih lanjut untuk membuat dokumentasi yang lebih profesional untuk aplikasi Logingi, termasuk informasi mengenai system requirement dan lain-lain:
 
-1. Clone repository dari GitHub:
+### 1. System Requirement
 
-    ```bash
-    git clone https://github.com/iqbalmahad/login
-    ```
+Sebelum menginstal aplikasi Logingi, pastikan sistem Anda memenuhi persyaratan berikut:
 
-2. Masuk ke direktori aplikasi:
+-   PHP versi 7.4 atau lebih tinggi
+-   Composer
+-   MySQL atau database lainnya yang didukung oleh Laravel
+-   Web server seperti Apache atau Nginx
 
-    ```bash
-    cd login
-    ```
+### 2. Instalasi Aplikasi Login+SpatiePermission
 
-3. Install dependensi menggunakan Composer:
+#### 2.1 Clone Repository
 
-    ```bash
-    composer install
-    ```
+Clone repository Logingi dari GitHub:
 
-4. Salin file `.env.example` menjadi `.env`:
+```bash
+git clone https://github.com/iqbalmahad/login
+```
 
-    ```bash
-    cp .env.example .env
-    ```
+#### 2.2 Masuk ke Direktori Aplikasi
 
-5. Buat database sesuai dengan yang diatur dalam file `.env`.
+Pindah ke direktori aplikasi Logingi:
 
-6. Atur file `.env` dengan informasi database yang benar.
+```bash
+cd login
+```
 
-7. Generate key aplikasi:
+#### 2.3 Install Dependensi
 
-    ```bash
-    php artisan key:generate
-    ```
+Install dependensi menggunakan Composer:
 
-8. Jalankan migrasi untuk membuat struktur database:
+```bash
+composer install
+```
 
-    ```bash
-    php artisan migrate
-    ```
+#### 2.4 Salin File `.env`
 
-9. Jalankan seeder untuk menambahkan role dan permission:
+Salin file `.env.example` menjadi `.env`:
 
-    ```bash
-    php artisan db:seed --class=RolePermissionSeeder
-    ```
+```bash
+cp .env.example .env
+```
 
-10. Jalankan seeder untuk menambahkan pengguna:
+#### 2.5 Atur File `.env`
 
-    ```bash
-    php artisan db:seed --class=UserSeeder
-    ```
+Atur file `.env` dengan informasi database yang benar sesuai dengan sistem Anda.
 
-11. Jalankan server Laravel:
-    ```bash
-    php artisan serve
-    ```
+#### 2.6 Generate Key Aplikasi
 
-Setelah langkah-langkah ini dilakukan, kamu dapat mengakses aplikasi dengan menggunakan pengguna admin atau pengguna biasa yang telah dibuat. Perlu diingat bahwa pengguna admin memiliki hak akses lebih daripada pengguna biasa.
+Generate key aplikasi Laravel:
+
+```bash
+php artisan key:generate
+```
+
+#### 2.7 Jalankan Migrasi Database
+
+Jalankan migrasi untuk membuat struktur database:
+
+```bash
+php artisan migrate
+```
+
+#### 2.8 Jalankan Seeder
+
+Jalankan seeder untuk menambahkan role dan permission:
+
+```bash
+php artisan db:seed --class=RolePermissionSeeder
+```
+
+Jalankan seeder untuk menambahkan pengguna:
+
+```bash
+php artisan db:seed --class=UserSeeder
+```
+
+### 3. Menjalankan Aplikasi
+
+#### 3.1 Jalankan Server Laravel
+
+Jalankan server Laravel untuk mengakses aplikasi:
+
+```bash
+php artisan servegit
+```
+
+### 4. Mengakses Aplikasi
+
+Setelah langkah-langkah ini dilakukan, Anda dapat mengakses aplikasi Login+SpatiePermission melalui browser dengan menggunakan pengguna admin atau pengguna biasa yang telah dibuat. Pastikan untuk login dengan akun yang sesuai untuk mengakses fitur aplikasi.
+
+Dokumentasi yang lebih lengkap seperti ini akan membantu pengguna baru atau pengembang lain untuk lebih mudah memahami cara menginstal dan menjalankan aplikasi Login+SpatiePermission dengan benar. Jika Anda membutuhkan informasi tambahan atau penjelasan lebih lanjut, jangan ragu untuk bertanya!
