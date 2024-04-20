@@ -17,12 +17,7 @@ class AuthController extends Controller
         $credentials = $request->only('nik', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Login berhasil
-            if (Auth::user()->hasRole('admin')) {
-                return redirect()->intended('/admin/dashboard');
-            } else {
-                return redirect()->intended('/user/dashboard');
-            }
+            return redirect()->intended('/dashboard');
         } else {
             // Login gagal
             return redirect()->back()->withInput()->withErrors(['nik' => 'Nik atau password salah']);

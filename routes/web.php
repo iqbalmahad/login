@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -20,15 +22,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    // Routes untuk admin
-    Route::resource('news', NewsController::class);
+Route::middleware('auth', 'permission:read user')->group(function () {
+    Route::get('/users/profile', [UserController::class, 'showProfile'])->name('users.profile');
 });
 
-Route::middleware(['auth', 'user'])->group(function () {
-    // Routes untuk user
-    Route::get('news', [NewsController::class, 'index']);
-    Route::get('news/{id}', [NewsController::class, 'show']);
+Route::middleware('auth', 'role:admin')->group(function () {
+    Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+    Route::get('/addresses/{address}/create', [AddressController::class, 'create'])->name('addresses.create');
+    Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
+    Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
+    Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/users/{address}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{address}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{address}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 Route::middleware(['guest'])->group(function () {
@@ -36,10 +47,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 });
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/user/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
