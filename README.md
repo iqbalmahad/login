@@ -1,8 +1,8 @@
-Berikut adalah langkah-langkah lebih lanjut untuk membuat dokumentasi yang lebih profesional untuk aplikasi Logingi, termasuk informasi mengenai system requirement dan lain-lain:
+Berikut adalah langkah-langkah lebih lanjut untuk membuat dokumentasi yang lebih profesional untuk aplikasi Login+SpatiePermission, termasuk informasi mengenai system requirement dan lain-lain:
 
 ### 1. System Requirement
 
-Sebelum menginstal aplikasi Logingi, pastikan sistem Anda memenuhi persyaratan berikut:
+Sebelum menginstal aplikasi Login+SpatiePermission, pastikan sistem Anda memenuhi persyaratan berikut:
 
 -   PHP versi 7.4 atau lebih tinggi
 -   Composer
@@ -13,7 +13,7 @@ Sebelum menginstal aplikasi Logingi, pastikan sistem Anda memenuhi persyaratan b
 
 #### 2.1 Clone Repository
 
-Clone repository Logingi dari GitHub:
+Clone repository Login+SpatiePermission dari GitHub:
 
 ```bash
 git clone https://github.com/iqbalmahad/login
@@ -21,7 +21,7 @@ git clone https://github.com/iqbalmahad/login
 
 #### 2.2 Masuk ke Direktori Aplikasi
 
-Pindah ke direktori aplikasi Logingi:
+Pindah ke direktori aplikasi Login+SpatiePermission:
 
 ```bash
 cd login
@@ -84,7 +84,7 @@ php artisan db:seed --class=UserSeeder
 Jalankan server Laravel untuk mengakses aplikasi:
 
 ```bash
-php artisan servegit
+php artisan serve
 ```
 
 ### 4. Mengakses Aplikasi
